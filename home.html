@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="back">
+      <div class="upper">
+        <div class="Action">
+          <div class="container">
+            <header>Actions</header>
+            <div class="button">
+              <button onclick="addUser(); totalUsers()">Add User</button>
+              <button onclick="expenses(); totalExpense()">
+                Enter Expenses
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="users">
+          <div class="container">
+            <header>Users</header>
+            <p id="usr"></p>
+          </div>
+        </div>
+        <div class="expenses">
+          <div class="container">
+            <header>Expenses</header>
+            <p id="exp"></p>
+            <p id="expt" >Total =</p>
+            
+          </div>
+        </div>
+      </div>
+      <div class="lower">
+        <div class="container">
+          <table>
+            <thead>
+              <th>Sr.NO</th>
+              <th>Name</th>
+              <th>Amount</th>
+            </thead>
+
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+
+
+function refresh(){
+    totalUsers();
+    totalExpense();
+    showTotal();
+}
+    function addUser() {
+      var user = prompt("Enter Username", "");
+      if (user != null) {
+        var users = JSON.parse(localStorage.getItem("users")) || [];
+        users.push(user);
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+      refresh()
+    }
+
+    function totalUsers() {
+      var users = JSON.parse(localStorage.getItem("users")) || [];
+
+      var all = [];
+      all = JSON.parse(localStorage.getItem("users")) || [];
+      let html = "";
+      html += "<ul>";
+      for (user of all) {
+        html += "<li>" + user + "</li>";
+      }
+      html += "</ul>";
+      document.getElementById("usr").innerHTML = html;
+    }
+
+    function expenses() {
+      var expense = parseInt(prompt("Enter Expenses", "0"), 10);
+      if (expense != null) {
+        var espenses = JSON.parse(localStorage.getItem("espenses")) || [];
+        espenses.push(expense);
+        localStorage.setItem("espenses", JSON.stringify(espenses));
+      }
+      refresh()
+    }
+
+    let userNo = JSON.parse(localStorage.users).length;
+
+    var total = 0;
+    var perPerson = 0;
+
+    function totalExpense() {
+      var espenses = JSON.parse(localStorage.getItem("espenses")) || [];
+      let html = "";
+      html += "<ul>";
+        let total=0;
+      for (exp of espenses) {
+        html += "<li>" + exp + "</li>";
+        total+=parseFloat(exp)
+      }
+      html += "</ul>";
+      document.getElementById("exp").innerHTML = html;
+      document.getElementById("expt").innerHTML ="Total ="+total;
+    }
+
+    function showTotal() {
+      let expenses = JSON.parse(localStorage.getItem("espenses")) || [];
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      let html = "";
+      let total = 0;
+      expenses.forEach((e) => (total += e));
+      let avgexpense = total / users.length;
+      avgexpense=Number(avgexpense).toFixed(2)
+      for (let index = 0; index < users.length; index++) {
+        const user = users[index];
+        html += `<tr><td>${
+          index + 1
+        }</td><td>${users[index]}</td><td>${avgexpense}</td></tr>`;
+      }
+      document.getElementById("tbody").innerHTML = html;
+    }
+
+    refresh()
+  </script>
+</html>

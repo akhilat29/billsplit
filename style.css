@@ -1,0 +1,107 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+.back{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    flex-wrap: wrap;
+}
+
+.upper{
+    display: flex;
+    height: 50%;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.lower{
+    height: 50%;
+    width: 60%;
+}
+
+.lower .container{
+    display: flex;
+    flex-direction: row;
+}
+
+.action{
+    
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.users{
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.expenses{
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    background-color: lightgray;
+    height: 100%;
+    min-width: 300px;
+    border-radius: 40px;
+}
+
+p{
+    font-size: 25px;
+    font-weight: bolder;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.container header{
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    padding: 15px;
+    border-radius: 7px;
+}
+.button{
+    display: flex;
+    flex-direction: column  ;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    
+}
+.button button{
+    background-color: cornflowerblue;
+    border-radius: 10px;
+    color: white;
+    font-size: 25px;
+    margin: 40px;
+    min-width: 200px;
+}
+.sno{
+    width: 25%;
+}
+.name{
+    width: 40%;
+}
+.amount{
+    width: 35%;
+}
+table {
+    width: 100%;
+    text-align: left;
+}
+thead {
+    background: black;
+    color: white;
+}
+thead th{
+    padding: 16px;
+}
